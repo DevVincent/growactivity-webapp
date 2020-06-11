@@ -1,0 +1,11 @@
+secondary color: #50a3a2;
+primary color: #00616A;
+nav color: #28B4C3;
+nav workspace color: #FB9167
+workspace bckg: #0E3848
+workspace containers: #0C5A67
+amber parrot:#DEB30F
+olive parrot: #DBD630
+dark turqouise parrot: #228C9A
+angela blue:#50a3a2
+graywhite bckg: #E9ECEF
