@@ -14,11 +14,12 @@ const CreateActivity = (props) => {
           }
         }
         checkSignedIn();
-    })
+    });
+    
     const onSubmit = (formValues) => {
-        props.createActivity({ ...formValues, id: props.currentUserID});
-        
+        props.createActivity({ ...formValues, id: props.currentUserID});        
     }
+
     return(
         <React.Fragment>
             <Navigation/>

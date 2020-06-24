@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const AvatarContainer = styled.div`
-    margin-top:8vh;
+    margin-top:3.5vh;
     width:100%;
-    min-height:30vh;
+    min-height:20vh;
     height:100%;
     padding:1vh 1vh;
     position:sticky;
@@ -18,11 +18,11 @@ const Greeting = styled.p`
     padding:1vh 1vh;
 `;
 const ImgContainer = styled.div`
-    width:16vh;  
+    width:12vh;  
     margin:auto;
 `;
 const AvatarImg = styled.img`
-    width:16vh;
+    width:12vh;
 `;
 const UlCointainer = styled.div`
     display:flex;
@@ -44,22 +44,22 @@ const AvatarLi = styled.li`
     text-align:center;
 `;
 
-const Session = (props) => {
+const Avatar = (props) => {
     return(
         <AvatarContainer>
-            <Greeting>Session</Greeting>
+            <Greeting>{props.user.username}</Greeting>
             <ImgContainer>
-                <AvatarImg src={require('../../svg/session.svg')} alt="avatar"/>
+                <AvatarImg src={require(`../../svg/${props.user.avatar}.svg`)} alt="avatar"/>
             </ImgContainer>
             <hr/>
             <UlCointainer>
                 <AvatarUl>
-                    <AvatarLi>Start Session</AvatarLi>
-                    <AvatarLi>Chart</AvatarLi>
+                    <AvatarLi>Profile</AvatarLi>
+                    <AvatarLi>Settings</AvatarLi>
                 </AvatarUl>
             </UlCointainer>
         </AvatarContainer>
     )
 }
 
-export default Session;
+export default Avatar;

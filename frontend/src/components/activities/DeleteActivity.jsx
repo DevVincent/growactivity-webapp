@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import {Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { deleteActivity } from '../../actions';
 import { Wrapper, Title, MainBtn, FormContainer} from '../../styledcomponents';
 import Navigation from '../Navigation';
@@ -20,14 +20,13 @@ const ListActivities = (props) => {
     const deleted = () => {
         const parameters = [props.match.params.id, props.currentUserID]
         props.deleteActivity(props.match.params.id);
-        history.push('/activities')
     }
     return(
         <React.Fragment>
             <Navigation/>
             <Wrapper>  
                 <div className = "ui container">   
-                    <Title>Are you sure you want to delete me?</Title>
+                    <Title>Are you sure you want to delete this activity?</Title>
                     <FormContainer>
                         <MainBtn onClick={()=> deleted()}>Delete</MainBtn>   
                         <Link to ='/activities'><MainBtn>Back</MainBtn></Link>

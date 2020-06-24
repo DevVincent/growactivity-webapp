@@ -24,7 +24,6 @@ import Contact from './Contact';
 import Profile from './user/Profile';
 import Settings from './user/Settings';
 
-
 const App = () => {
     return(
         <div>
@@ -98,8 +97,8 @@ const App = () => {
                         path='/activities/:id/workspace/utilityLinks' exact 
                         component={UtilityLinks}
                     />
-                </div>
-            </Router>
+                </div>                
+            </Router>            
         </div>
     )
 }

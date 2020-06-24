@@ -1,7 +1,15 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { FormContainer, FormInput, FormBtn, FormLabel } from '../../styledcomponents'
-
+import { FormContainer, FormInput, FormBtn, FormLabel, Title } from '../../styledcomponents'
+import styled from 'styled-components'
+import './signUp.css'
+const AvatarImg = styled.img`
+    width:7vh;
+`;
+const AvatarContainer = styled.div`
+    width:20%;
+    display:inline-block;
+`;
 class SignUpForm extends React.Component{
 
     renderError({ touched, error }){//(meta)
@@ -28,7 +36,40 @@ class SignUpForm extends React.Component{
             </div>
         );
     }
-
+    renderPassword = ({ input, label, meta }) => {//arrow function notation to fix unknown value of this
+        //destructiring (formProps.input) ... and everything is send by the Field props, like label
+        //new jsx syntax... makes the input inherit all the props from formProps
+        const className = `field ${meta.error && meta.touched ? 'error': ''}`
+        return( 
+            <div className={className}>
+                <FormLabel>{label}</FormLabel>
+                <FormInput className="" {...input} type="password" autoComplete="off"/>
+                {this.renderError(meta)}
+            </div>
+        );
+    }
+    renderChoiceA = ({ input, label, meta }) => {//arrow function notation to fix unknown value of this
+        //destructiring (formProps.input) ... and everything is send by the Field props, like label
+        //new jsx syntax... makes the input inherit all the props from formProps
+        const className = `field ${meta.error && meta.touched ? 'error': ''}`
+        return( 
+            <div className={className}>
+                <FormInput className="" {...input} type="radio" value="female" autoComplete="off"/>
+                {this.renderError(meta)}
+            </div>
+        );
+    }
+    renderChoiceB = ({ input, label, meta }) => {//arrow function notation to fix unknown value of this
+        //destructiring (formProps.input) ... and everything is send by the Field props, like label
+        //new jsx syntax... makes the input inherit all the props from formProps
+        const className = `field ${meta.error && meta.touched ? 'error': ''}`
+        return( 
+            <div className={className}>
+                <FormInput className="" {...input} type="radio" value="male" autoComplete="off"/>
+                {this.renderError(meta)}
+            </div>
+        );
+    }
     onSubmit = (formValues) => {//(event){event.prevent.default()} not neccessary. redux-form takes care of it
         this.props.onSubmit(formValues);
     }
@@ -53,9 +94,30 @@ class SignUpForm extends React.Component{
                     />
                     <Field 
                         name="password" 
-                        component={this.renderInput} 
+                        component={this.renderPassword} 
                         label="Password" 
-                    />                  
+                    />  
+                    <div> 
+                        <Title small>Choose Avatar</Title>
+                        <AvatarContainer>
+                            <label>
+                                <Field 
+                                    name="avatar" 
+                                    component={this.renderChoiceA} 
+                                />
+                                <AvatarImg src={require('../../svg/female.svg')} className=""/>
+                            </label>
+                        </AvatarContainer>
+                        <AvatarContainer>
+                            <label>
+                                <Field 
+                                    name="avatar" 
+                                    component={this.renderChoiceB}   
+                                />
+                                <AvatarImg src={require('../../svg/male.svg')} className=""/>
+                            </label>
+                        </AvatarContainer>
+                    </div>        
                     <FormBtn>Create Account</FormBtn>
                 </form>
             </FormContainer>
