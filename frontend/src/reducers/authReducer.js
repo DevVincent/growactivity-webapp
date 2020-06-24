@@ -1,9 +1,11 @@
 import { SIGN_UP, SIGN_IN, SIGN_OUT, FETCH_USER } from '../actions/types'
 
 const INITIAL_STATE = {
-    isSignedIn: null,
+    isSignedIn: true,
     userInfo: {
-        _id:''
+        _id: '5edd8cdce56c9c1d98ee89b5',
+        username: 'Vicente',
+        avatar: 'male'
     }
     // /5edd8cdce56c9c1d98ee89b5
 }
@@ -17,7 +19,7 @@ export default (state = INITIAL_STATE, action) => {
         case FETCH_USER:
             return { ...state, isSignedIn: true, userInfo: action.payload }
         case SIGN_OUT:
-            return { ...state, isSignedIn: null, userInfo: {_id:'null'}, }
+            return { ...state, isSignedIn: null, userInfo: { _id:null, username:null, email:null, password:null, avatar:null }, }
         default:
             return state;
     }
