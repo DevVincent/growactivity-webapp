@@ -16,7 +16,16 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required:true,
+    },
+    avatar: {
+        type: String,
+        default: 'null'
+    },
+    joinedIn: { 
+        type: Date, 
+        default: Date.now
     }
+    
     //ADD PROFILE, SETTINGS....
 });
 

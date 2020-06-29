@@ -1,32 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const Activity = require('../models/Activity');
+const Workspace = require('../models/Workspace');
 
-//Fetch Activities
+//Fetch Workspace
 
-router.post('/',async(req,res)=>{
-    const { id } = req.body;
-    try{      
-        const activities = await Activity.find({owner: id},);
-        res.json(activities)
-    }catch(err){
-        res.json({ message: err})
-    }
+router.post('/newDescription',async(req,res)=>{
+    const { id, title, description } = req.body;
+    try {
+        await Workspace.updateOne({ _id: id }, { $set: { "description": description }});
+        return res.status(200).json({ response: true });
+      } catch(e){
+        return next(e)
+      }
 });
 
-router.post('/new', async (req,res)=>{
+router.post('/newGoal',async(req,res,next)=>{
     const { id, title, description } = req.body;
-    const activity = new Activity({
-        owner: id,
-        title: title,
-        description: description
-    });
-    try{
-        const savedActivity = await activity.save()
-        res.json(savedActivity)
-    }catch(err){
-        res.json({message: err})
-    }
+    try {
+        await Workspace.findByIdAndUpdate({ _id: id }, { $set: { "goals$[].title": title} },{ "new": true, "upsert": true },
+        function (err) {
+            if (err) throw err;
+        });
+        return res.status(200).json({ response: true });
+      } catch(e){
+        return next(e)
+      }
 });
 
 router.delete('/:activityId', async (req,res)=>{
