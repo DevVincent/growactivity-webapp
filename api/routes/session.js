@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Session = require('../models/Session');
 
-//Fetch sessions
+//Sessions
 
 router.get('/',async(req,res)=>{
     const { id } = req.body;
